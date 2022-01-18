@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import sequelizeConfig from "./config/configFunctions/sequelizeConfig";
-import configValues from "./config/loadConfigValues";
-import { AuthModule } from "./modules/auth/auth.module";
-import { UsersModule } from "./modules/users/users.module";
+import AuthModule from "./authentication/auth.module";
+import configValues from "./config";
+import UsersModule from "./models/users/users.module";
+import PostgresModule from "./providers/database/postgress.module";
 
 @Module({
-	imports: [configValues, sequelizeConfig, AuthModule, UsersModule],
+	imports: [configValues, PostgresModule, AuthModule, UsersModule],
 })
 export default class AppModule {}
