@@ -6,6 +6,7 @@ import { SequelizeModule, SequelizeModuleOptions } from "@nestjs/sequelize";
 	imports: [
 		SequelizeModule.forRootAsync({
 			imports: [ConfigModule],
+			inject: [ConfigService],
 			useFactory: (configService: ConfigService) =>
 				({
 					dialect: configService.get<string>("database.dialect"),
@@ -17,7 +18,6 @@ import { SequelizeModule, SequelizeModuleOptions } from "@nestjs/sequelize";
 					autoLoadModels: true,
 					synchronize: false,
 				} as SequelizeModuleOptions),
-			inject: [ConfigService],
 		}),
 	],
 })
