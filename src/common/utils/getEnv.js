@@ -1,13 +1,13 @@
 module.exports = function getEnv() {
 	let env;
 	switch (process.env.NODE_ENV.trim()) {
-		case "development":
+		case "dev":
 			env = ".env.dev";
 			break;
 		case "test":
 			env = ".env.test";
 			break;
-		case "production":
+		case "prod":
 			env = ".env";
 			break;
 		default:

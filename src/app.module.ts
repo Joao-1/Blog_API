@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import AuthModule from "./authentication/auth.module";
 import configValues from "./config";
 import UsersModule from "./modules/users/users.module";
-import PostgresModule from "./providers/database/postgress.module";
+import PostgresModule from "./providers/database/postgres.module";
 
 @Module({
 	imports: [configValues, PostgresModule, AuthModule, UsersModule],

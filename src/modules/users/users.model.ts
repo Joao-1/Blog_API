@@ -3,21 +3,21 @@ import { AllowNull, Column, DataType, Default, Model, PrimaryKey, Table } from "
 
 @Table
 export default class User extends Model {
-	@Column(DataType.UUIDV4)
 	@PrimaryKey
 	@AllowNull(false)
 	@Default(UUIDV4)
+	@Column(DataType.UUIDV4)
 	id!: string;
 
-	@Column
 	@AllowNull(false)
+	@Column
 	username: string;
 
-	@Column
 	@AllowNull(false)
+	@Column
 	password: string;
 
-	@Column
 	@AllowNull(false)
+	@Column
 	email: string;
 }

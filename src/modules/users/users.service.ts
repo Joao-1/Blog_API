@@ -4,6 +4,7 @@ import User from "./users.model";
 @Injectable()
 export default class UsersService {
 	async findOne(email: string): Promise<User> {
-		throw new Error(email);
+		const user = await User.findOne({ where: { email } });
+		return user;
 	}
 }
