@@ -6,6 +6,7 @@
 #manually
 .env.dev
 .env.test
+src/database/dataDev
 
 # User-specific stuff:
 .idea/**/workspace.xml
