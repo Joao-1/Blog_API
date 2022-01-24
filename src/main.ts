@@ -10,7 +10,6 @@ async function bootstrap() {
 	app.use(helmet());
 	// estudar melhor o que é csurf
 	// app.use(csurf.default());
-
 	await app.listen(configService.get("app.port"));
 }
 bootstrap();

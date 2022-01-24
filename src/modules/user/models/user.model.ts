@@ -20,4 +20,8 @@ export default class User extends Model {
 	@AllowNull(false)
 	@Column
 	email: string;
+
+	@AllowNull(true)
+	@Column
+	googleId: string;
 }

@@ -41,24 +41,13 @@ export namespace CreateUserErrors {
 	}
 }
 
-export namespace RegisterBookError {
-	export class BookImageNotProvided extends HttpException {
+export namespace LoginErrors {
+	export class UserWithGoogleSubDoesNotExists extends HttpException {
 		constructor() {
 			super(
 				{
 					statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-					message: "An image of the book is required for registration",
-				},
-				HttpStatus.UNPROCESSABLE_ENTITY
-			);
-		}
-	}
-	export class BookAlreadyExists extends HttpException {
-		constructor(bookTitle: string) {
-			super(
-				{
-					statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-					message: `There is already a book with ${bookTitle} title`,
+					message: "There is no user with this google id",
 				},
 				HttpStatus.UNPROCESSABLE_ENTITY
 			);
@@ -66,18 +55,43 @@ export namespace RegisterBookError {
 	}
 }
 
-export namespace UpdateBookError {
-	export class BookWithThisIdDoesNotExists extends CommumError.WithThisIdDoesNotExists {
-		constructor(bookId: number) {
-			super(bookId);
-		}
-	}
-}
+// export namespace RegisterBookError {
+// 	export class BookImageNotProvided extends HttpException {
+// 		constructor() {
+// 			super(
+// 				{
+// 					statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+// 					message: "An image of the book is required for registration",
+// 				},
+// 				HttpStatus.UNPROCESSABLE_ENTITY
+// 			);
+// 		}
+// 	}
+// 	export class BookAlreadyExists extends HttpException {
+// 		constructor(bookTitle: string) {
+// 			super(
+// 				{
+// 					statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+// 					message: `There is already a book with ${bookTitle} title`,
+// 				},
+// 				HttpStatus.UNPROCESSABLE_ENTITY
+// 			);
+// 		}
+// 	}
+// }
 
-export namespace DeleteBookError {
-	export class BookWithThisIdDoesNotExists extends CommumError.WithThisIdDoesNotExists {
-		constructor(bookId: number) {
-			super(bookId);
-		}
-	}
-}
+// export namespace UpdateBookError {
+// 	export class BookWithThisIdDoesNotExists extends CommumError.WithThisIdDoesNotExists {
+// 		constructor(bookId: number) {
+// 			super(bookId);
+// 		}
+// 	}
+// }
+
+// export namespace DeleteBookError {
+// 	export class BookWithThisIdDoesNotExists extends CommumError.WithThisIdDoesNotExists {
+// 		constructor(bookId: number) {
+// 			super(bookId);
+// 		}
+// 	}
+// }

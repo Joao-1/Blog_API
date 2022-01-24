@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { DataBaseError } from "src/common/exceptions/serverErros";
-import IUser from "./interfaces/user.interface";
+import CreateUserDtoBody from "./dto/createUser.dto";
 import User from "./models/user.model";
 
 @Injectable()
 export default class UserRepository {
-	async insertNewUser(user: IUser) {
+	async insertNewUser(user: CreateUserDtoBody) {
 		try {
 			return User.create(user);
 		} catch (error) {
@@ -17,43 +17,22 @@ export default class UserRepository {
 		}
 	}
 
-	// async getAllBooks() {
-	// 	try {
-	// 	} catch (error) {
-	// 		throw new DataBaseError(
-	// 			"An error occurred while trying to get all books from the database",
-	// 			error,
-	// 			"UserRepository"
-	// 		);
-	// 	}
-	// }
-
-	// async updateABook(bookId: number, newValues: IBook) {
-	// 	try {
-	// 	} catch (error) {
-	// 		throw new DataBaseError(
-	// 			"An error occurred when trying to update a book in the database.",
-	// 			error,
-	// 			"UserRepository"
-	// 		);
-	// 	}
-	// }
-
-	// async deleteABook(bookId: number) {
-	// 	try {
-	// 	} catch (error) {
-	// 		throw new DataBaseError(
-	// 			"An error occurred when trying to delete a book in the database.",
-	// 			error,
-	// 			"UserRepository"
-	// 		);
-	// 	}
-	// }
+	async findByGoogleId(googleId) {
+		try {
+			return User.findOne({ where: { googleId } });
+		} catch (error) {
+			throw new DataBaseError(
+				"An error occurred while searching for a user by their Google Id",
+				error,
+				"UserRepository"
+			);
+		}
+	}
 
 	async checkIfUserExistsByName(username: string) {
 		try {
-			const possibleUsers = await User.findAll({ where: { username } });
-			return !!possibleUsers.length;
+			const possibleUser = await User.findOne({ where: { username } });
+			return !!possibleUser;
 		} catch (error) {
 			throw new DataBaseError(
 				"An error occurred when trying to verify the existence of a user by name",
@@ -65,8 +44,8 @@ export default class UserRepository {
 
 	async checkIfUserExistsByEmail(email: string) {
 		try {
-			const possibleUsers = await User.findAll({ where: { email } });
-			return !!possibleUsers.length;
+			const possibleUser = await User.findOne({ where: { email } });
+			return !!possibleUser;
 		} catch (error) {
 			throw new DataBaseError(
 				"An error occurred when trying to verify the existence of a user by email",
@@ -78,11 +57,25 @@ export default class UserRepository {
 
 	async checkIfUserExistsById(userId: string) {
 		try {
-			const possibleUsers = await User.findAll({ where: { id: userId } });
-			return !!possibleUsers.length;
+			const possibleUser = await User.findOne({ where: { id: userId } });
+			return !!possibleUser;
 		} catch (error) {
 			throw new DataBaseError(
 				"An error occurred when trying to verify the existence of a user by id",
+				error,
+				"UserRepository"
+			);
+		}
+	}
+
+	async checkIfUserExistsByGoogleId(googleId: number) {
+		try {
+			const possibleUser = await User.findOne({ where: { googleId } });
+			return !!possibleUser;
+		} catch (error) {
+			console.log(error);
+			throw new DataBaseError(
+				"An error occurred when trying to verify the existence of a user by GoogleId",
 				error,
 				"UserRepository"
 			);

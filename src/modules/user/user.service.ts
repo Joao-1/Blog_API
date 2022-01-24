@@ -11,6 +11,10 @@ export default class UserService {
 	constructor(private userRepository: UserRepository) {}
 
 	async create(user: CreateUserDtoBody) {
+		// if (user.withOAuth) {
+		// 	console.log(user);
+		// }
+
 		if (await this.userRepository.checkIfUserExistsByName(user.username)) {
 			throw new CreateUserErrors.UserWithNameAlreadyExists();
 		}
