@@ -24,8 +24,7 @@ export default class LoginController {
 	@Get("google/redirect")
 	@UseGuards(GoogleAuthGuard)
 	async googleAuthRedirect(@Req() req, @Res() res: Response) {
-		console.log(req.user);
-		const userJWT = await this.loginService.loginWithGoogle(req.user);
+		const userJWT = await this.loginService.loginWithGoogle(req.user.data);
 		res.status(200).json({ status: "success", acessToken: userJWT });
 	}
 }
