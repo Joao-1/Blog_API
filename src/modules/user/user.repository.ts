@@ -73,7 +73,6 @@ export default class UserRepository {
 			const possibleUser = await User.findOne({ where: { googleId } });
 			return !!possibleUser;
 		} catch (error) {
-			console.log(error);
 			throw new DataBaseError(
 				"An error occurred when trying to verify the existence of a user by GoogleId",
 				error,
