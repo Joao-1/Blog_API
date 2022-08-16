@@ -1,6 +1,6 @@
 module.exports = function getEnv() {
 	let env;
-	switch (process.env.NODE_ENV.trim()) {
+	switch ("dev") {
 		case "dev":
 			env = ".env.dev";
 			break;
